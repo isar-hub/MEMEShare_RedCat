@@ -1,6 +1,6 @@
 package com.isar.memeshare.retrofit
 
-import com.isar.memeshare.Memes
+import com.isar.memeshare.MainActivity
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -30,5 +30,5 @@ object RetrofitInstance{
 
 interface ApiInterface {
     @GET("gimme/")
-    fun getMemes(): Call<Memes>
+    fun getMemes(): Call<MainActivity.Memes>
 }

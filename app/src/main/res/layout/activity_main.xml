@@ -2,187 +2,145 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".MainActivity">
-<!--    <ImageView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/group"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        />-->
 
-    <ImageView
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:id="@+id/line"
-        android:background="@drawable/square_shape"
-        />
+        android:background="@drawable/background"
+        android:clickable="true"
+        android:focusable="true">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/topLayout"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="45dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
+
         <ImageView
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:background="@drawable/square_shape"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="20dp" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/slogan"
-            android:layout_marginEnd="18dp"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/top_navigation"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="11dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/topLayout"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/slogan" />
 
+            <ImageView
+                android:id="@+id/navigationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/top_navigation"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/white" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/white" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/loader"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/loader"
+            app:layout_constraintBottom_toBottomOf="@id/memeImage"
+            app:layout_constraintLeft_toLeftOf="@id/memeImage"
+            app:layout_constraintRight_toRightOf="@id/memeImage"
+            app:layout_constraintTop_toTopOf="@id/memeImage"
+            app:tint="@android:color/white" />
+
+        <ImageView
+            android:id="@+id/heart_icon"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/baseline_favorite_24"
+            android:visibility="visible"
+
+            app:layout_constraintLeft_toLeftOf="@id/memeImage"
+            app:layout_constraintRight_toRightOf="@id/memeImage"
+            app:layout_constraintTop_toBottomOf="@id/memeImage"
+            app:tint="@android:color/white" />
+        <TextView
+            android:id="@+id/likeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="@id/memeImage"
+            app:layout_constraintRight_toRightOf="@id/memeImage"
+            android:text="Double Tap to Like"
+
+            app:layout_constraintTop_toBottomOf="@id/heart_icon"
 
             />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/topLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <View
+
+        <com.isar.memeshare.CustomImagView
+            android:id="@+id/memeImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/square_shape"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/categories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topLayout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categories"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@color/white"/>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="@color/white"/>
-    </LinearLayout>
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:showAnimationBehavior="outward"
-
-        app:layout_constraintTop_toTopOf="@id/card_stack_view"
-        app:layout_constraintBottom_toBottomOf="@id/card_stack_view"
-        app:layout_constraintRight_toRightOf="@id/card_stack_view"
-        app:layout_constraintLeft_toLeftOf="@id/card_stack_view"
-        />
-
-    <com.isar.memeshare.CustomImagView
-        android:id="@+id/card_stack_view"
-        android:layout_width="250dp"
-        android:layout_height="300dp"
-        android:background="@drawable/square_shape"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@id/categories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topLayout"
- />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categories"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="24dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/single_categories_layout"
-        tools:itemCount="5"/>
-
-    <!--    <LinearLayout-->
-<!--        android:id="@+id/categories"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:weightSum="5"-->
-<!--        android:gravity="bottom"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:layout_marginBottom="30dp"-->
-<!--        >-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="15dp"-->
-<!--            android:layout_height="15dp"-->
-<!--            android:src="@drawable/polygon"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_weight="0.2"-->
-<!--            android:rotation="180"-->
-<!--            />-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:layout_weight="0.8"-->
-<!--            android:layout_marginHorizontal="5dp"-->
-<!--            android:background="@drawable/shape"-->
-<!--            />-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_weight="0.8"-->
-<!--            android:layout_marginHorizontal="5dp"-->
-<!--            android:background="@drawable/shape"-->
-<!--            />-->
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="110dp"-->
-<!--            android:layout_weight="1.4"-->
-<!--            android:layout_marginHorizontal="5dp"-->
-<!--            android:background="@drawable/square_shape"-->
-<!--            />-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_weight="0.8"-->
-<!--            android:layout_marginHorizontal="5dp"-->
-
-<!--            android:background="@drawable/shape"-->
-<!--            />-->
+            android:layout_height="110dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:itemCount="5"
+            tools:listitem="@layout/single_categories_layout" />
 
 
-<!--        <ImageView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_weight="0.8"-->
-<!--            android:layout_marginHorizontal="5dp"-->
-<!--            android:background="@drawable/shape"-->
-<!--            />-->
-<!--        <ImageView-->
-<!--            android:layout_width="15dp"-->
-<!--            android:layout_height="15dp"-->
-<!--            android:src="@drawable/polygon"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_weight="0.2"-->
-<!--            />-->
-
-
-<!--    </LinearLayout>-->
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

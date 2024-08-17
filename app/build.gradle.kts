@@ -16,6 +16,10 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
 
     buildTypes {
         release {
@@ -52,5 +56,8 @@ dependencies {
     // gson converter
     implementation (libs.converter.gson)
     implementation (libs.logging.interceptor)
+    implementation (libs.androidx.lifecycle.extensions)
+    implementation (libs.androidx.lifecycle.viewmodel)
+    implementation (libs.androidx.lifecycle.livedata)
 
 }

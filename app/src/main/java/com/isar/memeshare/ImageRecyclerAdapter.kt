@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class ImageRecyclerAdapter(private val items: List<Category>, private val context: Context) :
+class ImageRecyclerAdapter(private val items: List<MainActivity.Category>, private val context: Context) :
     RecyclerView.Adapter<ImageRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
