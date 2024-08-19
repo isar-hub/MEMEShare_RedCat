@@ -1,9 +1,7 @@
 package com.isar.memeshare
 
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.*
@@ -11,13 +9,9 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.view.animation.ScaleAnimation
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -25,26 +19,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.navigation.NavigationView
 import com.isar.memeshare.databinding.ActivityMainBinding
 import com.isar.memeshare.retrofit.Repository
-import com.isar.memeshare.retrofit.RetrofitInstance
 import com.isar.memeshare.viewmodel.MainViewModel
 import com.mig35.carousellayoutmanager.CarouselLayoutManager
 import com.mig35.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.mig35.carousellayoutmanager.CenterScrollListener
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
-
 
 
     private lateinit var binding: ActivityMainBinding
@@ -61,14 +45,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
         setupRecyclerView()
         setupObservers()
         viewModel.loadMeme()
 
-        binding.navigationButton.setOnClickListener{
+        binding.navigationButton.setOnClickListener {
             showDialog()
         }
 
@@ -219,6 +200,10 @@ class MainActivity : AppCompatActivity() {
             adapter = categoryAdapter
             addOnScrollListener(CenterScrollListener())
         }
+        categoryAdapter.onItemClick = { items ->
+
+            Toast.makeText(this@MainActivity, "Clicked ON ${items.name}",Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showDialog() {
@@ -255,48 +240,35 @@ class MainActivity : AppCompatActivity() {
     private fun getCategoryData(): List<Category> {
         // Replace with your method to fetch or generate data for the adapter
         return listOf(
-            Category("Item 1", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 2", "https://picsum.photos/seed/picsum/200/300"),
-            Category("Item 3", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 4", "https://picsum.photos/200/300/?blur"),
-            Category("Item 5", "https://picsum.photos/id/870/200/300?grayscale&blur=2"),
-            Category("Item 6", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 7", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 8", "https://picsum.photos/200/300/?blur"),
-            Category("Item 9", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 10", "https://picsum.photos/200/300/?blur"),
-            Category("Item 11", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 1", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 2", "https://picsum.photos/seed/picsum/200/300"),
-            Category("Item 3", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 4", "https://picsum.photos/200/300/?blur"),
-            Category("Item 5", "https://picsum.photos/id/870/200/300?grayscale&blur=2"),
-            Category("Item 6", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 7", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 8", "https://picsum.photos/200/300/?blur"),
-            Category("Item 9", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 10", "https://picsum.photos/200/300/?blur"),
-            Category("Item 1", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 2", "https://picsum.photos/seed/picsum/200/300"),
-            Category("Item 3", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 4", "https://picsum.photos/200/300/?blur"),
-            Category("Item 5", "https://picsum.photos/id/870/200/300?grayscale&blur=2"),
-            Category("Item 6", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 7", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 8", "https://picsum.photos/200/300/?blur"),
-            Category("Item 9", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 10", "https://picsum.photos/200/300/?blur"),
-            Category("Item 11", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 1", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 2", "https://picsum.photos/seed/picsum/200/300"),
-            Category("Item 3", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 4", "https://picsum.photos/200/300/?blur"),
-            Category("Item 5", "https://picsum.photos/id/870/200/300?grayscale&blur=2"),
-            Category("Item 6", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 7", "https://api.memegen.link/images/ds/small_file/high_quality.png"),
-            Category("Item 8", "https://picsum.photos/200/300/?blur"),
-            Category("Item 9", "https://picsum.photos/200/300?grayscale"),
-            Category("Item 10", "https://picsum.photos/200/300/?blur"),
+            Category("Memes", R.drawable.memes),
+            Category("Inspirational Quotes", R.drawable.motivational_quotes),
+            Category("Quotes", R.drawable.quotes),
+            Category("Poetry", R.drawable.poetry),
+            Category("Motivations", R.drawable.motivations),
+            Category("Facts", R.drawable.facts),
+            Category("Career Advice", R.drawable.development),
+            Category("Breaking News", R.drawable.breaking_news),
+            Category("Art and Design", R.drawable.art),
+            Category("Photography", R.drawable.photography),
+            Category("Mental Health Awareness", R.drawable.health),
+            Category("Meditation and Mindfulness", R.drawable.meditation),
+            Category("Financial Tips", R.drawable.financial),
+            Category("Home Decor Ideas", R.drawable.home_decor),
+            Category("Food Recipes", R.drawable.food_recipie),
+            Category("Health and Wellness Tips", R.drawable.health_wellness),
+            Category("Travel Diaries", R.drawable.travel),
+            Category("Fashion Trends", R.drawable.fashion_trends),
+            Category("Science Facts", R.drawable.science),
+            Category("Cartoons/Comics", R.drawable.comics),
+            Category("Personal Development Tips", R.drawable.personal_dev),
+            Category("Fitness Motivation", R.drawable.motivational),
+
+            Category("Music", R.drawable.music),
+            Category("GIFs", R.drawable.gifs),
+            Category("Movie/TV Show Updates", R.drawable.movie_tv),
+            Category("Sports Updates", R.drawable.sports),
+            Category("Politics", R.drawable.politics),
+
 
             )
 
@@ -315,7 +287,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     data class Memes(val url: String)
-    data class Category(val name: String, val url: String)
+    data class Category(val name: String, val url: Int)
 
 
     abstract class DoubleClickListener : OnClickListener {
@@ -335,4 +307,5 @@ class MainActivity : AppCompatActivity() {
             private const val DOUBLE_CLICK_TIME_DELTA: Long = 300 //milliseconds
         }
     }
+
 }

@@ -5,30 +5,31 @@
     app:cardCornerRadius="20dp"
     android:background="@drawable/square_shape"
     android:backgroundTint="@color/black"
-    android:layout_height="match_parent">
-    <RelativeLayout
+    android:layout_height="120dp">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/white"
         >
         <ImageView
             android:id="@+id/categoryImage"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/placeholder"
+            android:layout_height="80dp"
+            android:src="@drawable/memes"
+            android:scaleType="fitCenter"
             />
 
         <TextView
             android:id="@+id/categoryText"
-
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="2dp"
+            android:textSize="10sp"
             android:textStyle="bold"
-android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
+            android:gravity="center"
             android:textColor="@color/secondaryColor"
-            android:text="Categories"/>
-    </RelativeLayout>
+            android:text="Meditation and Mindfulness"/>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
